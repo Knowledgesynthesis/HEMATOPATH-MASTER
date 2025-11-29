@@ -8,49 +8,57 @@ const interactiveTools = [
     id: 'marrow-cellularity',
     name: 'Marrow Cellularity Estimator',
     description: 'Practice estimating bone marrow cellularity based on age-adjusted norms',
-    category: 'Morphology'
+    category: 'Morphology',
+    route: '/interactive/marrow-cellularity'
   },
   {
     id: 'dysplasia-detector',
     name: 'Dysplasia Pattern Recognition',
     description: 'Learn to identify dysplastic features in erythroid, myeloid, and megakaryocytic lineages',
-    category: 'Morphology'
+    category: 'Morphology',
+    route: '/interactive/dysplasia-detector'
   },
   {
     id: 'flow-classifier',
     name: 'Flow Cytometry Pattern Classifier',
     description: 'Practice identifying B-cell, T-cell, and myeloid immunophenotypes',
-    category: 'Flow Cytometry'
+    category: 'Flow Cytometry',
+    route: '/interactive/flow-classifier'
   },
   {
     id: 'leukemia-logic',
     name: 'Leukemia Logic Pathway',
     description: 'Work through diagnostic algorithms for acute and chronic leukemias',
-    category: 'Integration'
+    category: 'Integration',
+    route: '/interactive/leukemia-pathway'
   },
   {
     id: 'lymph-node-explorer',
     name: 'Lymph Node Architecture Explorer',
     description: 'Understand normal architecture and patterns of effacement',
-    category: 'Lymphomas'
+    category: 'Lymphomas',
+    route: '/interactive/lymph-node-explorer'
   },
   {
     id: 'cytogenetics-match',
     name: 'Cytogenetic Signature Matcher',
     description: 'Match translocations and cytogenetic findings to disease entities',
-    category: 'Cytogenetics'
+    category: 'Cytogenetics',
+    route: '/interactive/cytogenetics-matcher'
   },
   {
     id: 'plasma-clonality',
     name: 'Plasma Cell Clonality Checker',
     description: 'Practice interpreting κ/λ light chain ratios and patterns',
-    category: 'Plasma Cell'
+    category: 'Plasma Cell',
+    route: '/interactive/plasma-clonality'
   },
   {
     id: 'integrated-diagnosis',
     name: 'Integrated Diagnosis Builder',
     description: 'Combine morphology, flow, cytogenetics, and molecular data into final diagnoses',
-    category: 'Integration'
+    category: 'Integration',
+    route: '/interactive/integrated-diagnosis'
   }
 ];
 
@@ -80,22 +88,24 @@ export function Interactives() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {interactiveTools.map((tool) => (
-          <Card key={tool.id} className="transition-all hover:shadow-lg">
-            <CardHeader>
-              <div className="mb-2">
-                <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  {tool.category}
-                </span>
-              </div>
-              <CardTitle className="text-xl">{tool.name}</CardTitle>
-              <CardDescription>{tool.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="outline" className="w-full" disabled>
-                Launch Tool (Demo)
-              </Button>
-            </CardContent>
-          </Card>
+          <Link key={tool.id} to={tool.route}>
+            <Card className="h-full transition-all hover:shadow-lg hover:scale-105">
+              <CardHeader>
+                <div className="mb-2">
+                  <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    {tool.category}
+                  </span>
+                </div>
+                <CardTitle className="text-xl">{tool.name}</CardTitle>
+                <CardDescription>{tool.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="outline" className="w-full">
+                  Launch Tool
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
 
